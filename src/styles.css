@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mi-boton {
+  position: absolute;
+  font-family: "Arial Black", sans-serif;
+  top: 50%;
+  height: 48px;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: block;
+}

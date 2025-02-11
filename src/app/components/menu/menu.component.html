@@ -1,6 +1,17 @@
 <mat-toolbar>
-  <div class="example-button-row">
-    <button mat-button routerLink="/notas">Notas</button>
-    <button mat-button routerLink="/posts">Posts</button>
-  </div>
+  <!--<div class="example-button-row">-->
+  <button mat-button routerLink="/notas">Notas</button>
+  <button mat-button routerLink="/posts">Posts</button>
+  <span class="spacer"></span>
+
+
+
+  <span *ngIf="user$ | async as user; else guest">
+    <button mat-button (click)="logout()">Cerrar Sesión</button>
+  </span>
+  <ng-template #guest>
+    <button mat-button routerLink="/auth">Iniciar Sesión</button>
+  </ng-template>
+
+  <!--</div>-->
 </mat-toolbar>

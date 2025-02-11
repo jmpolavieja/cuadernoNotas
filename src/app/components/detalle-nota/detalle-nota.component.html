@@ -1,16 +1,40 @@
-@if(nota){
+@if(datosCargados){
 
   <form [formGroup]="miFormulario">
+    <input formControlName="id" hidden>
     <mat-form-field appearance="outline">
       <mat-label>Titulo</mat-label>
       <input matInput formControlName="titulo">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contenido</mat-label>
-      <textarea rows="15" matInput formControlName="contenido"></textarea>
+      <textarea rows="10" matInput formControlName="contenido"></textarea>
     </mat-form-field>
+
+      <input type="file" (change)="seleccionarImagen($event)" accept="image/">
+
+    @if (imagenes.length > 0) {
+      <mat-grid-list cols="2" rowHeight="2:1">
+      @for (img of imagenes; track $index) {
+        <mat-grid-tile>
+          <img src="{{img}}" width="100%" alt="imagen">
+        </mat-grid-tile>
+      }
+      </mat-grid-list>
+    }
+<!--    <button mat-flat-button  aria-expanded="true" (click)="seleccionarImagen()">Add Imagen</button>-->
+    <div class="button-row">
+      <button mat-button (click)="addNota()" [class.hidden]="!nuevo">Nueva nota</button>
+      <button mat-button (click)="updateNota()" [class.hidden]="nuevo">Actualizar</button>
+    </div>
   </form>
+
 <button mat-icon-button routerLink="/notas">
   <mat-icon>keyboard_backspace</mat-icon>
 </button>
+} @else {
+  <!-- mostrar un spinner de carga -->
+  <div class="centrado">
+    <mat-spinner></mat-spinner>
+</div>
 }

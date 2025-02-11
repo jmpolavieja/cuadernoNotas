@@ -8,3 +8,14 @@ form {
 form > * {
   width: 100%;
 }
+.button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+.centrado {
+  width: 100px;
+  margin: 25% auto;
+}
+.hidden {
+  display: none;
+}

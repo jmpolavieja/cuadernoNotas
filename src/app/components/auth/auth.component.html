@@ -1,14 +1,16 @@
-<div class="container">
-  <div class="form-container" [class.active]="!isLogin">
-    @if(isLogin){
+<div class="container" [class.register-active]="isRegister">
+  <div class="form-container">
+    <div class="login-form">
       <app-login></app-login>
-    } @else {
+    </div>
+    <div class="register-form">
       <app-register></app-register>
-    }
+    </div>
   </div>
-  <div class="side-rectangle" [class.move-left]="!isLogin">
-    <button (click)="toggleForm()">
-      {{ isLogin ? 'Registrarse' : 'Iniciar Sesión' }}
+  <div class="panel">
+
+    <button (click)="toggleRegister()" class="btn-toggle">
+      {{ isRegister ? 'Ir a Registro' : 'Ir a Acceso' }}
     </button>
   </div>
 </div>

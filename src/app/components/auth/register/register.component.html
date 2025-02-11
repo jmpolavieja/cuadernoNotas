@@ -1,17 +1,17 @@
 <div>
   <h2>Registro</h2>
-  <form class="registro-form">
+  <form [formGroup]="formRegistro" class="registro-form">
     <mat-form-field>
-      <input matInput placeholder="Nombre de usuario">
+      <input matInput placeholder="Nombre de usuario" formControlName="displayName">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="correo electrónico">
+      <input matInput placeholder="correo electrónico" formControlName="email">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="password" type="password">
+      <input matInput placeholder="password" type="passwor" formControlName="password">
     </mat-form-field>
 
-    <button mat-fab disabled aria-label="Example icon button with a heart icon">
+    <button mat-fab (click)="registro()" aria-label="Example icon button with a heart icon">
       <mat-icon>how_to_reg</mat-icon>
     </button>
   </form>

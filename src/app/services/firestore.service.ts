@@ -28,7 +28,7 @@ export class FirestoreService {
 
   detalleNota(id: string): Observable<Nota> {
     const docRef = doc(this.afs, 'notas', id);
-    return docData(docRef) as Observable<Nota>;
+    return docData(docRef, { idField: 'id' }) as Observable<Nota>;
   }
 
   updateNota(nota: any) {

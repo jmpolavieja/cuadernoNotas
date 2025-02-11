@@ -1,11 +1,20 @@
 import { Routes } from '@angular/router';
-import {AuthGuard} from '@angular/fire/auth-guard';
 import {loginGuard} from './guards/login.guard';
+import {BienvenidaComponent} from './components/bienvenida/bienvenida.component';
+import {isAdminGuard} from './guards/is-admin.guard';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: '', component: BienvenidaComponent
+  },
+  {
+    path: 'notas',
     loadComponent: () => import('./components/notas/notas.component').then(m => m.NotasComponent),
+    canActivate: [loginGuard]
+  },
+  {
+    path: 'nuevaNota',
+    loadComponent: () => import('./components/detalle-nota/detalle-nota.component').then(m => m.DetalleNotaComponent),
     canActivate: [loginGuard]
   },
   {
@@ -20,15 +29,13 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    loadComponent: () => import('./components/auth/auth.component').then(m => m.AuthComponent)
+    loadComponent: () => import('./components/auth/auth.component').then(m => m.AuthComponent),
+    canActivate: [isAdminGuard]
   },
   {
-    path: 'login',
-    loadComponent: () => import('./components/auth/login/login.component').then(m => m.LoginComponent)
-  },
-  {
-    path: 'register',
-    loadComponent: () => import('./components/auth/register/register.component').then(m => m.RegisterComponent)
+    path: 'admin',
+    loadChildren: () => import('./administracion/administracion.module').then(m => m.AdministracionModule),
+    canActivate: [isAdminGuard]
   },
   {
     path: '**',

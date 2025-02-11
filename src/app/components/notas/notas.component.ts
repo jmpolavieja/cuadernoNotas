@@ -3,8 +3,9 @@ import {MatActionList, MatList, MatListItem, MatListItemLine} from '@angular/mat
 import {MatLine} from '@angular/material/core';
 import {FirestoreService} from '../../services/firestore.service';
 import {MatIcon} from '@angular/material/icon';
-import {MatFabButton} from '@angular/material/button';
+import {MatFabButton, MatMiniFabButton} from '@angular/material/button';
 import { RouterLink} from '@angular/router';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-notas',
@@ -17,7 +18,9 @@ import { RouterLink} from '@angular/router';
     MatFabButton,
     RouterLink,
     MatListItemLine,
-    MatActionList
+    MatActionList,
+    MatMiniFabButton,
+    MatProgressSpinner
   ],
   templateUrl: './notas.component.html',
   styleUrl: './notas.component.css'
@@ -25,9 +28,11 @@ import { RouterLink} from '@angular/router';
 export class NotasComponent {
   notas: any[] = [];
   firestoreService = inject(FirestoreService);
+  cargando = true;
 
   ngOnInit() {
     this.firestoreService.getNotas().subscribe(notas => {
+      this.cargando = false;
       this.notas = notas;
     });
   }
@@ -42,4 +47,6 @@ export class NotasComponent {
       })
     }
   }
+
+
 }

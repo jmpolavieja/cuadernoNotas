@@ -13,9 +13,9 @@ import {RegisterComponent} from './register/register.component';
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
-  isLogin = true; // Estado inicial en login
+  isRegister = true; // Estado inicial en login
 
-  toggleForm() {
-    this.isLogin = !this.isLogin;
+  toggleRegister() {
+    this.isRegister = !this.isRegister;
   }
 }
